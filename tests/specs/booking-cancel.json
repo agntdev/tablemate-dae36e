@@ -1,19 +1,34 @@
 [
   {
-    "name": "Cancel booking",
+    "name": "Cancel booking - non-existent ref",
     "steps": [
       {
+        "send": { "callback": "booking:cancel:NONEXIST" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Initiates cancellation flow"
-            }
-          }
-        ],
-        "send": {
-          "callback": "booking:cancel"
-        }
+          { "method": "sendMessage", "payload": { "text": "Booking not found. Check the reference code and try again." } }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cancel booking - confirm prompt",
+    "steps": [
+      {
+        "send": { "callback": "booking:cancel_confirm:NONEXIST" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Booking not found." } }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cancel booking - deny keeps booking",
+    "steps": [
+      {
+        "send": { "callback": "booking:cancel_deny:NONEXIST" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "No worries — your booking is still confirmed." } }
+        ]
       }
     ]
   }

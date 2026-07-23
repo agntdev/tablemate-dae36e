@@ -1,19 +1,36 @@
 [
   {
-    "name": "Book a table",
+    "name": "Book a table - full reservation flow",
     "steps": [
       {
+        "send": { "callback": "booking:start" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Initiates reservation flow"
-            }
-          }
-        ],
-        "send": {
-          "callback": "booking:start"
-        }
+          { "method": "sendMessage", "payload": { "text": "How many guests?" } }
+        ]
+      },
+      {
+        "send": { "callback": "booking:party:2" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Pick a date:" } }
+        ]
+      },
+      {
+        "send": { "callback": "booking:date:2026-07-24" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Available times:" } }
+        ]
+      },
+      {
+        "send": { "callback": "booking:slot:12:00" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "What name should the booking be under?" } }
+        ]
+      },
+      {
+        "send": { "text": "John Doe" },
+        "expect": [
+          { "method": "sendMessage" }
+        ]
       }
     ]
   }

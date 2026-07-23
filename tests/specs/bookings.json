@@ -1,19 +1,45 @@
 [
   {
-    "name": "/bookings",
+    "name": "/bookings shows owner dashboard",
     "steps": [
       {
+        "send": { "text": "/bookings" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Displays owner dashboard with upcoming bookings and capacity"
-            }
-          }
-        ],
-        "send": {
-          "text": "/bookings"
-        }
+          { "method": "sendMessage" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "/capacity shows capacity summary",
+    "steps": [
+      {
+        "send": { "text": "/capacity" },
+        "expect": [
+          { "method": "sendMessage" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "/settings shows owner settings",
+    "steps": [
+      {
+        "send": { "text": "/settings" },
+        "expect": [
+          { "method": "sendMessage" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "/mark_no_show shows no-show list",
+    "steps": [
+      {
+        "send": { "text": "/mark_no_show" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "No active bookings today to mark as no-show." } }
+        ]
       }
     ]
   }
