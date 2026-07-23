@@ -1,19 +1,12 @@
 [
   {
-    "name": "Reschedule",
+    "name": "Reschedule - non-existent ref",
     "steps": [
       {
+        "send": { "callback": "booking:reschedule:NONEXIST" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Opens rescheduling options for existing bookings"
-            }
-          }
-        ],
-        "send": {
-          "callback": "booking:reschedule"
-        }
+          { "method": "sendMessage", "payload": { "text": "Booking not found. Check the reference code and try again." } }
+        ]
       }
     ]
   }
